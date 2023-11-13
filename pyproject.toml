@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "mobile-wiki-diploma"
+version = "0.1.0"
+description = ""
+authors = ["Anhelina Babareka <anhielina.babareka@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pytest = "^7.4.3"
+selene = "2.0.0rc4"
+allure-pytest = "^2.13.2"
+pydantic-settings = "^2.0.3"
+appium-python-client = "^3.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
