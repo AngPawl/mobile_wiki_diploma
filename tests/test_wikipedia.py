@@ -24,19 +24,19 @@ def test_search_for_appium():
             (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")
         ).click()
 
-    with allure.step('Search for {appium_search_query}'):
+    with allure.step(f'Search for {appium_search_query.query}'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/search_src_text")).type(
-            appium_search_query
+            appium_search_query.query
         )
 
     # Then
-    with allure.step('Search results should contain {appium_search_query}'):
+    with allure.step(f'Search results should contain {appium_search_query.query}'):
         results = browser.all(
             (AppiumBy.ID, 'org.wikipedia.alpha:id/page_list_item_title')
         )
         results.should(have.size_greater_than(0))
-        results.first.should(have.text(appium_search_query))
+        results.first.should(have.text(appium_search_query.query))
 
 
 @allure.title('Search for invalid query doesn\'t return results')
@@ -51,14 +51,14 @@ def test_search_for_invalid_query():
             (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")
         ).click()
 
-    with allure.step('Search for {invalid_search_query}'):
+    with allure.step(f'Search for {invalid_search_query.query}'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/search_src_text")).type(
-            invalid_search_query
+            invalid_search_query.query
         )
 
     # Then
-    with allure.step('No results should show for {invalid_search_query}'):
+    with allure.step(f'No results should show for {invalid_search_query.query}'):
         results = browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/results_text'))
         results.should(have.exact_text('No results'))
 
@@ -75,10 +75,10 @@ def test_search_and_open_article_for_testing():
             (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")
         ).click()
 
-    with allure.step('Search for {selene_search_query}'):
+    with allure.step(f'Search for {selene_search_query.query}'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/search_src_text")).type(
-            selene_search_query
+            selene_search_query.query
         )
     with allure.step('Open the first article'):
         results = browser.all(
@@ -87,9 +87,9 @@ def test_search_and_open_article_for_testing():
         results.first.click()
 
     # Then
-    with allure.step('Article title should be {selene_search_query}'):
+    with allure.step(f'Article title should be {selene_search_query.query}'):
         browser.element((AppiumBy.CLASS_NAME, "android.widget.TextView")).should(
-            have.exact_text(selene_search_query)
+            have.exact_text(selene_search_query.query)
         )
 
 
@@ -151,18 +151,18 @@ def test_language_is_successfully_added():
             (AppiumBy.ID, 'org.wikipedia.alpha:id/search_lang_button')
         ).click()
 
-    with allure.step('Choose language {language}'):
+    with allure.step(f'Choose language {language.language}'):
         browser.all(
             (AppiumBy.ID, 'org.wikipedia.alpha:id/wiki_language_title')
         ).second.click()
         browser.all(
             (AppiumBy.ID, 'org.wikipedia.alpha:id/localized_language_name')
-        ).element_by(exact_text(language)).click()
+        ).element_by(exact_text(language.language)).click()
 
     # Then
-    with allure.step('Language {language} should be added to the list of languages'):
+    with allure.step(f'Language {language.language} should be added to the list of languages'):
         results = browser.all(
             (AppiumBy.ID, 'org.wikipedia.alpha:id/wiki_language_title')
         )
         results.should(have.size(3))
-        results.second.should(have.exact_text(language))
+        results.second.should(have.exact_text(language.language))
