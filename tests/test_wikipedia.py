@@ -12,6 +12,7 @@ from mobile_wiki_diploma.data.search_queries import (
 )
 
 
+@allure.feature('Search')
 @allure.title('Search results render for valid search query')
 @allure.label('owner', 'AngPawl')
 @allure.tag('smoke tests')
@@ -39,6 +40,7 @@ def test_search_for_appium():
         results.first.should(have.text(appium_search_query.query))
 
 
+@allure.feature('Search')
 @allure.title('Search for invalid query doesn\'t return results')
 @allure.label('owner', 'AngPawl')
 @allure.tag('smoke tests')
@@ -63,6 +65,7 @@ def test_search_for_invalid_query():
         results.should(have.exact_text('No results'))
 
 
+@allure.feature('Article')
 @allure.title('Article successfully opens')
 @allure.label('owner', 'AngPawl')
 @allure.tag('smoke tests')
@@ -93,6 +96,7 @@ def test_search_and_open_article_for_testing():
         )
 
 
+@allure.feature('Onboarding')
 @allure.title('Onboarding screens have correct titles')
 @allure.label('owner', 'AngPawl')
 @allure.tag('smoke tests')
@@ -131,6 +135,7 @@ def test_onboarding_screens():
         ).should(be.visible)
 
 
+@allure.feature('Language switch')
 @allure.title('Language is successfully added to the list of languages')
 @allure.label('owner', 'AngPawl')
 @allure.tag('smoke tests')
@@ -160,7 +165,9 @@ def test_language_is_successfully_added():
         ).element_by(exact_text(language.language)).click()
 
     # Then
-    with allure.step(f'Language {language.language} should be added to the list of languages'):
+    with allure.step(
+        f'Language {language.language} should be added to the list of languages'
+    ):
         results = browser.all(
             (AppiumBy.ID, 'org.wikipedia.alpha:id/wiki_language_title')
         )
