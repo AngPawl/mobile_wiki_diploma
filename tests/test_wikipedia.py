@@ -20,7 +20,7 @@ from mobile_wiki_diploma.data.search_queries import (
 @allure.severity(Severity.CRITICAL)
 def test_search_for_appium():
     # When
-    with allure.step('Click on Skip button'):
+    with allure.step('Tap on Skip button'):
         browser.element(
             (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")
         ).click()
@@ -48,7 +48,7 @@ def test_search_for_appium():
 @allure.severity(Severity.CRITICAL)
 def test_search_for_invalid_query():
     # When
-    with allure.step('Click on Skip button'):
+    with allure.step('Tap on Skip button'):
         browser.element(
             (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")
         ).click()
@@ -73,7 +73,7 @@ def test_search_for_invalid_query():
 @allure.severity(Severity.CRITICAL)
 def test_search_and_open_article_for_testing():
     # When
-    with allure.step('Click on Skip button'):
+    with allure.step('Tap on Skip button'):
         browser.element(
             (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")
         ).click()
@@ -110,22 +110,22 @@ def test_onboarding_screens():
     title = browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView'))
 
     # When
-    with allure.step('Click on Continue button'):
+    with allure.step('Tap on Continue button'):
         continue_button.click()
     with allure.step('Verify the page title is "New ways to explore"'):
         title.should(have.exact_text('New ways to explore'))
 
-    with allure.step('Click on Continue button'):
+    with allure.step('Tap on Continue button'):
         continue_button.click()
     with allure.step('Verify the page title is "Reading lists with sync"'):
         title.should(have.exact_text('Reading lists with sync'))
 
-    with allure.step('Click on Continue button'):
+    with allure.step('Tap on Continue button'):
         continue_button.click()
     with allure.step('Verify the page title is "Send anonymous data"'):
         title.should(have.exact_text('Send anonymous data'))
 
-    with allure.step('Click on Accept button'):
+    with allure.step('Tap on Accept button'):
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/acceptButton')).click()
 
     # Then
@@ -143,15 +143,15 @@ def test_onboarding_screens():
 @allure.severity(Severity.CRITICAL)
 def test_language_is_successfully_added():
     # When
-    with allure.step('Click on Skip button'):
+    with allure.step('Tap on Skip button'):
         browser.element(
             (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")
         ).click()
 
-    with allure.step('Click on searchbar'):
+    with allure.step('Tap on searchbar'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
 
-    with allure.step('Click on Language button'):
+    with allure.step('Tap on Language button'):
         browser.element(
             (AppiumBy.ID, 'org.wikipedia.alpha:id/search_lang_button')
         ).click()
